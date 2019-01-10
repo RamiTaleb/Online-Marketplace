@@ -5,7 +5,7 @@ Types::MutationType = GraphQL::ObjectType.define do
     argument :title, !types.String
     argument :price, !types.Float
     argument :inventory_count, !types.Int
-    description 'Add a product to the catalogue'
+    description 'Add a product to the catalogue. Requires a title (string), price (float) and inventory_count (int)'
 
     resolve ->(obj, args, ctx) {
       Product.create(
@@ -18,7 +18,7 @@ Types::MutationType = GraphQL::ObjectType.define do
 
   field :purchase_product, Types::ProductType do
     argument :id, !types.ID
-    description 'Purchase a product (decreases the inventory count of product by 1)'
+    description 'Purchase a product (decreases the inventory count of product by 1 only if the inventory count of the product is > 0)'
 
     resolve ->(obj, args, ctx) {
       prod = Product.find_by(id: args[:id])
