@@ -1,6 +1,6 @@
 # 👨🏻‍💻 Rami's Shopify Backend Challenge 2019👨🏻‍💻
 
-Hopefully this doesn't suck and helps you understand how to get this running, doing all the things you want it to. I'm only going to be documenting how to use the API which can be accessed where its deployed. If you want to clone the repo and try running this project locally i'm sure you'll know how to set it up. I'm assuming whoever is looking over this has experience with setting up and running a Ruby on Rails project so forgive me for skipping some details. 
+Hopefully this doesn't suck and helps you understand how to get this running, doing all the things you want it to. I don't have this project hosted anywhere so I hope its not too much trouble to follow these steps to get the project up and running on your local machine.
 
 You can access the API here once you have the project running: http://localhost:3000/graphiql
 
