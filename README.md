@@ -4,6 +4,15 @@ Hopefully this doesn't suck and helps you understand how to get this running, do
 
 You can access the API here once you have the project running: http://localhost:3000/graphiql
 
+* [The API](https://github.com/ramitaleb/shopify-backend-challenge-2019#the-api)
+  
+  * [The Model](https://github.com/ramitaleb/shopify-backend-challenge-2019#the-model)
+  
+  * [Adding Products to the Marketplace](https://github.com/ramitaleb/shopify-backend-challenge-2019#adding-products-to-the-marketplace)
+  
+  * [Querying for Products](https://github.com/ramitaleb/shopify-backend-challenge-2019#querying-for-products)
+  
+
 ## The API ⚙️
 I decided to use [GraphQL](https://graphql.org/) as I've never used it before and I thought it would be a great opportunity to get my feet wet with it. *The bonus points also don't hurt* 🤪
 
