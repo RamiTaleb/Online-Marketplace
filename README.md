@@ -194,7 +194,7 @@ Output:
 In both cases you can see it returns for us all products currently in our marketplace.
 
 ##### Querying for all Available Products
-Available proucts are products with an `inventory_count > 0`. We must pass an argument `only_available: true` to be able to only see the products that are available. 
+Available products are products with an `inventory_count > 0`. We must pass an argument `only_available: true` to be able to only see the products that are available. 
 
 ```
 Example:
