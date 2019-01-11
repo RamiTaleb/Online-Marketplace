@@ -46,8 +46,8 @@ The Product model is what we're going to be using which has the following attrib
 To be able to query for products, we must first have products to query. This is how we're going to do that.
 You're going to want to write a mutation that will be able to add whatever you specify to the database.
 
-Example:
 ```
+Example:
 mutation {
   create_product (
     title: "sandwich"
@@ -61,8 +61,8 @@ mutation {
   }
 }
 ```
-Output:
 ```
+Output:
 {
   "data": {
     "create_product": {
@@ -83,8 +83,8 @@ Now that we have a product or multiple products in our database, we can start qu
 ##### Querying by ID
 Here we are querying for a product by its unique ID. We are asking for it to return to us the id, title, price and inventory_count. 
 
-Example:
 ```
+Example:
 {
   product_by_id(id: 1) {
     id
@@ -94,8 +94,8 @@ Example:
   }
 }
 ```
-Output:
 ```
+Output:
 {
   "data": {
     "product_by_id": {
@@ -112,8 +112,8 @@ As you can see it returns for us just the one product that we specified we wante
 ##### Querying by Title
 Here we are querying for a product by its title.
 
-Example:
 ```
+Example:
 {
   product_by_title(title: "sandwich") {
 		id
@@ -122,9 +122,9 @@ Example:
     inventory_count
   }
 }
+``` 
 ```
-Output: 
-```
+Output:
 {
   "data": {
     "product_by_title": {
@@ -142,8 +142,8 @@ As you can see it returns for us just the one product that we specified we wante
 ##### Querying for all Products
 Here we are querying for all products.
 
-Example:
 ```
+Example:
 {
   all_products() {
     id
@@ -164,8 +164,8 @@ OR
   }
 }
 ```
-Output: 
 ```
+Output: 
 {
   "data": {
     "all_products": [
@@ -196,8 +196,8 @@ In both cases you can see it returns for us all products currently in our market
 ##### Querying for all Available Products
 Available proucts are products with an `inventory_count > 0`. We must pass an argument `only_available: true` to be able to only see the products that are available. 
 
-Example:
 ```
+Example:
 {
   all_products(only_available: true){
     id
@@ -207,8 +207,8 @@ Example:
   }
 }
 ```
-Output:
 ```
+Output:
 {
   "data": {
     "all_products": [
@@ -233,8 +233,8 @@ As you can see here, we only were returned the products `sandwich` and `headphon
 ### Purchasing a Product
 You are also able to purchase available products with the API by calling this mutation endpoint along with the `id` of the product you would like to purchase. (No guarantee you will receive any product you purchase 😶)
 
-Example:
 ```
+Example:
 mutation {
   purchase_product (
     id: 1
@@ -246,9 +246,8 @@ mutation {
   }
 }
 ```
-
-Output:
 ```
+Output:
 {
   "data": {
     "purchase_product": {
