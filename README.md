@@ -12,8 +12,21 @@ You can access the API here once you have the project running: http://localhost:
   
   * [Querying for Products](https://github.com/ramitaleb/shopify-backend-challenge-2019#querying-for-products)
   
+    * [Querying for a Single Product](https://github.com/ramitaleb/shopify-backend-challenge-2019#querying-for-a-single-product)
+      * [Querying by ID](https://github.com/ramitaleb/shopify-backend-challenge-2019#querying-by-id)
+      
+      * [Querying by Title](https://github.com/ramitaleb/shopify-backend-challenge-2019#querying-by-title)
+      
+    * [Querying for Multiple Products](https://github.com/ramitaleb/shopify-backend-challenge-2019#querying-for-multiple-products)
+      * [Querying for all Products](https://github.com/ramitaleb/shopify-backend-challenge-2019#querying-for-all-products)
+      
+      * [Querying for all Available Products](https://github.com/ramitaleb/shopify-backend-challenge-2019#querying-for-all-available-products)
+      
+  * [Purchasing a Product](https://github.com/ramitaleb/shopify-backend-challenge-2019#purchasing-a-product)
+      
+  
 
-## The API ⚙️
+## The API
 I decided to use [GraphQL](https://graphql.org/) as I've never used it before and I thought it would be a great opportunity to get my feet wet with it. *The bonus points also don't hurt* 🤪
 
 ### The Model
