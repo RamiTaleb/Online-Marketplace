@@ -73,6 +73,29 @@ Types::MutationType = GraphQL::ObjectType.define do
     }
   end
 
+  # This mutation will allow you to remove an item from a cart given an
+  # item ID and a cart ID
+  field :remove_item_from_cart, Types::CartType do
+    argument :cart_id, !types.ID
+    argument :item_id, !types.ID
+
+    description 'Remove a specific item from a specified cart'
+
+    resolve ->(obj, args, ctx) {
+      # Here I am finding the price of the item we are removing so that we can
+      # subtract that from the total price of the cart,
+      # then updating the cart total
+      item = Item.find_by(id: args[:item_id])
+      price = item.price
+
+      cart = Cart.find_by(id: args[:cart_id])
+      cart.order_total -= price
+      item.destroy
+      cart.save
+      Cart.find_by(id: args[:cart_id])
+    }
+  end
+
   # This mutation allows you to checkout a cart. Purchasing all the items
   # within the cart. Must provide a cart ID
   field :checkout_cart, Types::CartType do
@@ -108,28 +131,6 @@ Types::MutationType = GraphQL::ObjectType.define do
         cart.order_status = !out_of_stock ? 'Completed' : 'Partially Completed'
         cart.save
       end
-      Cart.find_by(id: args[:cart_id])
-    }
-  end
-
-  # This mutation will allow you to remove an item from a cart given an
-  # item ID and a cart ID
-  field :remove_item_from_cart, Types::CartType do
-    argument :cart_id, !types.ID
-    argument :item_id, !types.ID
-
-    description 'Remove a specific item from a specified cart'
-
-    resolve ->(obj, args, ctx) {
-      # Here I am finding the price of the item we are removing so that we can
-      # subtract that from the total price of the cart,
-      # then updating the cart total
-      item = Item.find_by(id: args[:item_id])
-      price = item.price
-      cart = Cart.find_by(id: args[:cart_id])
-      cart.order_total -= price
-      item.destroy
-      cart.save
       Cart.find_by(id: args[:cart_id])
     }
   end

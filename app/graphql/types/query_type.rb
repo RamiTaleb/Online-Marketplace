@@ -40,7 +40,7 @@ Types::QueryType = GraphQL::ObjectType.define do
 
   # This allows you to view a cart given a cart ID
   field :cart_by_id do
-    type Types::CartType
+    type Types::CartTypecart
     argument :id, !types.ID
     description 'Find a cart by ID'
     resolve ->(obj, args, ctx) {
