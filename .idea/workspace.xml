@@ -2,16 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c3457fcf-3c70-4eef-a602-a12ea08a1182" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/graphql/types/cart_type.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/graphql/types/item_type.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/graphql/types/mutation_type.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/graphql/types/mutation_type.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/graphql/types/product_type.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/graphql/types/product_type.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/graphql/types/query_type.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/graphql/types/query_type.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/product.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/product.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/index/index.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/index/index.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/schema.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/schema.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/seeds.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/seeds.rb" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.bundle/" />
     <ignored path="$PROJECT_DIR$/components/" />
@@ -42,20 +34,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/graphql/types/mutation_type.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="293">
-              <caret line="78" column="28" lean-forward="true" selection-start-line="78" selection-start-column="28" selection-end-line="78" selection-end-column="28" />
+            <state relative-caret-position="45">
+              <caret line="3" column="64" lean-forward="true" selection-start-line="3" selection-start-column="64" selection-end-line="3" selection-end-column="64" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/graphql/types/query_type.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="10" column="5" lean-forward="true" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="5" />
+            <state relative-caret-position="308">
+              <caret line="31" column="26" lean-forward="true" selection-start-line="31" selection-start-column="26" selection-end-line="31" selection-end-column="26" />
             </state>
           </provider>
         </entry>
@@ -102,8 +94,8 @@
         <option value="$PROJECT_DIR$/db/migrate/20190111232344_create_carts.rb" />
         <option value="$PROJECT_DIR$/app/models/product.rb" />
         <option value="$PROJECT_DIR$/app/graphql/types/item_type.rb" />
-        <option value="$PROJECT_DIR$/app/graphql/types/query_type.rb" />
         <option value="$PROJECT_DIR$/app/graphql/types/mutation_type.rb" />
+        <option value="$PROJECT_DIR$/app/graphql/types/query_type.rb" />
       </list>
     </option>
   </component>
@@ -298,12 +290,12 @@
       <option name="presentableId" value="Default" />
       <updated>1547073466611</updated>
       <workItem from="1547073468241" duration="15308000" />
-      <workItem from="1547213654921" duration="14425000" />
+      <workItem from="1547213654921" duration="15868000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="29733000" />
+    <option name="totallyTimeSpent" value="31176000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="335" y="1080" width="1280" height="800" extended-state="0" />
@@ -496,17 +488,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/graphql/types/query_type.rb">
+    <entry file="file://$PROJECT_DIR$/app/graphql/types/mutation_type.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
-          <caret line="10" column="5" lean-forward="true" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="5" />
+          <caret line="3" column="64" lean-forward="true" selection-start-line="3" selection-start-column="64" selection-end-line="3" selection-end-column="64" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/graphql/types/mutation_type.rb">
+    <entry file="file://$PROJECT_DIR$/app/graphql/types/query_type.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="78" column="28" lean-forward="true" selection-start-line="78" selection-start-column="28" selection-end-line="78" selection-end-column="28" />
+        <state relative-caret-position="308">
+          <caret line="31" column="26" lean-forward="true" selection-start-line="31" selection-start-column="26" selection-end-line="31" selection-end-column="26" />
         </state>
       </provider>
     </entry>

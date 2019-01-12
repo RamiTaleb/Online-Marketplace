@@ -15,18 +15,21 @@ Types::QueryType = GraphQL::ObjectType.define do
   field :product_by_id do
     type Types::ProductType
     argument :id, !types.ID
-    description "Find a product by ID"
+    description 'Find a product by ID'
     resolve ->(obj, args, ctx) {
       Product.find_by(id: args[:id])
     }
   end
 
-  # This query finds all products or all available products given an optional argument
+  # This query finds all products or all available products
+  # given an optional argument
   field :all_products do
     type types[Types::ProductType]
     argument :only_available, types.Boolean
     description 'Find all products (optional: find only available products by passing true)'
     resolve ->(obj, args, ctx) {
+      # If :only_available is set to true then we only want to return
+      # available products
       if args[:only_available] == true
         Product.where('inventory_count > 0')
       else
