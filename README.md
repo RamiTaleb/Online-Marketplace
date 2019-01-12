@@ -10,6 +10,14 @@ You can access the API here once you have the project running: http://localhost:
   
   * [The Models](https://github.com/ramitaleb/shopify-backend-challenge-2019#the-models)
   
+    * [Product](https://github.com/ramitaleb/shopify-backend-challenge-2019#product)
+    
+    * [Item](https://github.com/ramitaleb/shopify-backend-challenge-2019#item)
+    
+    * [Cart](https://github.com/ramitaleb/shopify-backend-challenge-2019#cart)
+    
+    * [Class Diagram](https://github.com/ramitaleb/shopify-backend-challenge-2019#class-diagram)
+  
   * [Adding Products](https://github.com/ramitaleb/shopify-backend-challenge-2019#adding-products)
   
   * [Restocking Products](https://github.com/ramitaleb/shopify-backend-challenge-2019#restocking-products)
@@ -44,6 +52,7 @@ I decided to use [GraphQL](https://graphql.org/) as I've never used it before an
 ### The Models
 Before we get into using the API we should familiarize ourselves with the model that we'll be working with.
 
+#### Product
 The **Product** model is what we're going to be using to model our Products and it has the following attributes:
 
 `title`: String
@@ -52,6 +61,7 @@ The **Product** model is what we're going to be using to model our Products and 
 
 `inventory_count`: Integer
 
+#### Item
 The **Item** model is what we are using to represent every physical entity of a Product (making use of Software Design Patterns here 😋). It has the following attributes:
 
 `title`: String
@@ -62,6 +72,7 @@ The **Item** model is what we are using to represent every physical entity of a 
 
 `cart`: Foreign key
 
+#### Cart
 The **Cart** model is what we are using to store multiple products that are ready to be purchased together. It has the following attributes:
 
 `order_total`: Float
@@ -70,9 +81,9 @@ The **Cart** model is what we are using to store multiple products that are read
 
 `items`: [Foreign key]
 
-![Class Diagram](public/class-diagram.png "Class Diagram")
-
+#### Class Diagram
 Hopefully this class diagram gives you a better visual understanding of our models.
+![Class Diagram](public/class-diagram.png "Class Diagram")
 
 ### Adding Products to the Marketplace
 To be able to query for products, we must first have products to query. This is how we're going to do that.
