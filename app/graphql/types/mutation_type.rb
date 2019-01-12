@@ -18,28 +18,28 @@ Types::MutationType = GraphQL::ObjectType.define do
     }
   end
 
-  # This mutation allows you to purchase a product given a product ID if
-  # the product is available
-  field :purchase_product, Types::ProductType do
+  # This mutation allows you to restock a product so that
+  # it can be available for purchase
+  field :restock_product, Types::ProductType do
     argument :id, !types.ID
-    description 'Purchase a product (decreases the inventory count of product by 1 only if the inventory count of the product is > 0)'
+    argument :quantity, !types.Int
+
+    description 'Restock a product by a given quantity to make sure its available for purchase'
 
     resolve ->(obj, args, ctx) {
-      prod = Product.find_by(id: args[:id])
-      count = prod.inventory_count
-      if count > 0
-        count -= 1
-        prod.inventory_count = count
-        prod.save
-      end
+      # Here we are just finding the respective product and adding the value of quantity
+      # to its inventory_count
+      product = Product.find_by(id: args[:id])
+      product.inventory_count += args[:quantity]
+      product.save
       Product.find_by(id: args[:id])
     }
   end
 
   # This mutation allows you to create an empty cart
-  field :create_cart do
-    type Types::CartType
+  field :create_cart, Types::CartType do
     description 'Create an empty cart to begin adding products to'
+
     resolve ->(obj, args, ctx) {
       cart = Cart.create!(
         order_total: 0,
@@ -50,11 +50,12 @@ Types::MutationType = GraphQL::ObjectType.define do
 
   # This mutation allows you to add a product to your cart given a product ID
   # and a cart ID
-  field :add_to_cart do
-    type Types::CartType
+  field :add_to_cart, Types::CartType do
     argument :product_id, !types.ID
     argument :cart_id, !types.ID
+
     description 'Adds a single product to a specified cart'
+
     resolve ->(obj, args, ctx) {
       # Here we are creating an item and associating it to the respective
       # cart and product specified
@@ -76,7 +77,9 @@ Types::MutationType = GraphQL::ObjectType.define do
   # within the cart. Must provide a cart ID
   field :checkout_cart, Types::CartType do
     argument :cart_id, !types.ID
+
     description 'Checkout a cart, purchases all items within cart'
+
     resolve ->(obj, args, ctx) {
       cart = Cart.find_by(id: args[:cart_id])
       # If the cart has already been checked out then just return the cart
@@ -114,7 +117,9 @@ Types::MutationType = GraphQL::ObjectType.define do
   field :remove_item_from_cart, Types::CartType do
     argument :cart_id, !types.ID
     argument :item_id, !types.ID
+
     description 'Remove a specific item from a specified cart'
+
     resolve ->(obj, args, ctx) {
       # Here I am finding the price of the item we are removing so that we can
       # subtract that from the total price of the cart,
