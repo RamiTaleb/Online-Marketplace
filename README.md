@@ -10,7 +10,9 @@ You can access the API here once you have the project running: http://localhost:
   
   * [The Model](https://github.com/ramitaleb/shopify-backend-challenge-2019#the-model)
   
-  * [Adding Products to the Marketplace](https://github.com/ramitaleb/shopify-backend-challenge-2019#adding-products-to-the-marketplace)
+  * [Adding Products](https://github.com/ramitaleb/shopify-backend-challenge-2019#adding-products)
+  
+  * [Restocking Products](https://github.com/ramitaleb/shopify-backend-challenge-2019#restocking-products)
   
   * [Querying for Products](https://github.com/ramitaleb/shopify-backend-challenge-2019#querying-for-products)
   
@@ -24,23 +26,49 @@ You can access the API here once you have the project running: http://localhost:
       
       * [Querying for all Available Products](https://github.com/ramitaleb/shopify-backend-challenge-2019#querying-for-all-available-products)
       
-  * [Purchasing a Product](https://github.com/ramitaleb/shopify-backend-challenge-2019#purchasing-a-product)
+  * [Creating a Cart](https://github.com/ramitaleb/shopify-backend-challenge-2019#creating-a-cart)
+  
+  * [Querying for a Cart](https://github.com/ramitaleb/shopify-backend-challenge-2019#querying-for-a-cart)
+  
+  * [Adding a Product to Cart](https://github.com/ramitaleb/shopify-backend-challenge-2019#adding-a-product-to-cart)
+  
+  * [Remove a Product from Cart](https://github.com/ramitaleb/shopify-backend-challenge-2019#remove-a-product-from-cart)
+  
+  * [Checkout a Cart](https://github.com/ramitaleb/shopify-backend-challenge-2019#checkout-a-cart)
       
   
 
 ## The API
 I decided to use [GraphQL](https://graphql.org/) as I've never used it before and I thought it would be a great opportunity to get my feet wet with it. *The bonus points also don't hurt* 🤪
 
-### The Model
+### The Models
 Before we get into using the API we should familiarize ourselves with the model that we'll be working with.
 
-The Product model is what we're going to be using which has the following attributes:
+The **Product** model is what we're going to be using to model our Products and it has the following attributes:
 
 `title`: String
 
 `price`: Float
 
 `inventory_count`: Integer
+
+The **Item** model is what we are using to represent every physical entity of a Product (making use of Software Design Patterns here 😋). It has the following attributes:
+
+`title`: String
+
+`price`: Float
+
+`product`: Foreign key
+
+`cart`: Foreign key
+
+The **Cart** model is what we are using to store multiple products that are ready to be purchased together. It has the following attributes:
+
+`order_total`: Float
+
+`order_status`: String
+
+`items`: [Foreign key]
 
 ### Adding Products to the Marketplace
 To be able to query for products, we must first have products to query. This is how we're going to do that.
@@ -75,6 +103,37 @@ Output:
 }
 ```
 What this will do is it will create a sandwich, with the price of 5.00 and an inventory count of 80 then return to you the object its created.. You can change these values to whatever you'd like as long as they respect the type of the given attribute.
+
+### Restocking Products on the Marketplace
+Eventually you may run out of inventory for a certain product and you'd like to restock it. Well, you're in luck because I have just the mutation for you. Check this out:
+
+```
+Example:
+mutation {
+  restock_product(
+    id: 1
+    quantity: 5
+  ) {
+    id
+    title
+    price
+    inventory_count
+  }
+}
+```
+```
+Output:
+{
+  "data": {
+    "restock_product": {
+      "id": "1",
+      "title": "sandwich",
+      "price": 5.00,
+      "inventory_count": 85
+    }
+  }
+}
+```
 
 ### Querying for Products
 Now that we have a product or multiple products in our database, we can start querying for them.
@@ -230,19 +289,57 @@ Output:
 ```
 As you can see here, we only were returned the products `sandwich` and `headphones`. Since the product `love` has an `inventory_count` of 0 it is not shown in this output. 💔
 
-### Purchasing a Product
-You are also able to purchase available products with the API by calling this mutation endpoint along with the `id` of the product you would like to purchase. (No guarantee you will receive any product you purchase 😶)
+### Creating a Cart
+So, you've had time to browse the marketplace and its time to make some purchases. We're firstly going to need to create a cart. Here's how to do that:
 
 ```
 Example:
 mutation {
-  purchase_product (
-    id: 1
+  create_cart () {
+    id
+    order_total
+    order_status
+    items{
+      id
+      title
+      price
+    }
+  }
+} 
+```
+```
+Output:
+{
+  "data": {
+    "create_cart": {
+      "id": "1",
+      "order_total": 0,
+      "order_status": "In Progress",
+      "items": []
+    }
+  }
+}
+```
+So you can see we successfully were able to create a cart and it says that it is currently in progress, meaning it hasn't been checked out yet.
+
+### Add a Product to Cart
+You found a sandwich 🥪 you think would taste amazing and would like to buy it. Let's add it to our cart! Make sure you specify the product ID of the product you want and the cart ID of the cart you'd like to add that product to. Just execute this mutation (or twice if you're really hungry 😆):
+
+```
+Example:
+mutation {
+  add_to_cart (
+    product_id: 1
+    cart_id: 1
   ) {
     id
-    title
-    price
-    inventory_count
+    order_total
+    order_status
+    items{
+      id
+      title
+      price
+    }
   }
 }
 ```
@@ -250,18 +347,142 @@ mutation {
 Output:
 {
   "data": {
-    "purchase_product": {
+    "add_to_cart": {
       "id": "1",
-      "title": "sandwich",
-      "price": 5.0,
-      "inventory_count": 79
+      "order_total": 5,
+      "order_status": "In Progress",
+      "items": [
+        {
+          "id": "1",
+          "title": "sandwich",
+          "price": 5
+        }
+      ]
     }
   }
 }
 ```
-As you can see we are returned the product we purchased with an updated `inventory_count` that has been decremented by 1.
 
-**Note**: Attempting to purchase a product with an `inventory_count` of 0 will just return back the product without decrementing it further. 
+As you add more products to your cart you'll notice your items list to expand as well as your order_total to increase.
+
+### Querying for a Cart
+After adding a product or two to your cart 🛒 you may want to check on it to make sure you're not spending too much money. Well all you need to do that is to specify the cart ID in the following mutation:
+
+```
+Example:
+{
+  cart_by_id (id:1) {
+    id
+    order_total
+    order_status
+    items {
+      id
+      title
+      price
+    }
+  }
+}
+```
+```
+Output:
+{
+  "data": {
+    "cart_by_id": {
+      "id": "1",
+      "order_total": 5,
+      "order_status": "In Progress",
+      "items": [
+        {
+          "id": "1",
+          "title": "sandwich",
+          "price": 5
+        }
+      ]
+    }
+  }
+}
+```
 
 
+### Remove a Product from Cart
+You realized you had leftover shawarma from last night so you want to remove the sandwich from your cart. What you'll need to do is to specify the cart ID and the item ID like this:
 
+```
+Example:
+mutation{
+  remove_item_from_cart(
+    cart_id:1,
+    item_id:1
+  ) {
+    id
+    order_total
+    order_status
+    items{
+      id
+      title
+      price
+    }
+  }
+}
+```
+```
+Output:
+{
+  "data": {
+    "remove_item_from_cart": {
+      "id": "1",
+      "order_total": 0,
+      "order_status": "In Progress",
+      "items": []
+    }
+  }
+}
+```
+
+**IMPORTANT**: The item ID is different from the product ID! Check your cart to ensure you have the right item ID before executing this mutation.
+
+**NOTE**: When you have multiple items in a cart and one is removed, the `order_total` of the cart will update to reflect the items remaining in the cart.
+
+### Checkout a Cart
+Last but certainly not least, we have the checking out of a cart. After lots of back and forth you finally decided you would go ahead and purchase a sandwich! Can't wait any longer? Here's the mutation:
+
+```
+Example:
+mutation {
+  checkout_cart (
+    cart_id: 1
+  ) {
+    id
+    order_total
+    order_status
+    items{
+      id
+      title
+      price
+    }
+  }
+}
+```
+```
+Output:
+{
+  "data": {
+    "checkout_cart": {
+      "id": "1",
+      "order_total": 5,
+      "order_status": "Completed",
+      "items": [
+        {
+          "id": "1",
+          "title": "sandwich",
+          "price": 5
+        }
+      ]
+    }
+  }
+}
+```
+
+**NOTE**: After checking out a cart, the `inventory_count` of the products within the cart will be decremented by the number of times an item of that product was in the cart. If a product has an `inventory_count` of 0 or is in other words out of stock it will not decrement the `inventory_count`. You can check the inventory count of the products by [Querying for Products](https://github.com/ramitaleb/shopify-backend-challenge-2019#querying-for-products).
+
+**NOTE 2**: If a cart can be completely purchased successfully with no products that are out of stock you will see the `order_status` change to "Completed". If it can not be purchased successfully due to a product being out of stock then you will see the `order_status` change to "Partially Completed".
