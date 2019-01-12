@@ -8,7 +8,7 @@ You can access the API here once you have the project running: http://localhost:
 
 * [The API](https://github.com/ramitaleb/shopify-backend-challenge-2019#the-api)
   
-  * [The Model](https://github.com/ramitaleb/shopify-backend-challenge-2019#the-model)
+  * [The Models](https://github.com/ramitaleb/shopify-backend-challenge-2019#the-models)
   
   * [Adding Products](https://github.com/ramitaleb/shopify-backend-challenge-2019#adding-products)
   
@@ -69,6 +69,10 @@ The **Cart** model is what we are using to store multiple products that are read
 `order_status`: String
 
 `items`: [Foreign key]
+
+![Class Diagram](public/class-diagram.png "Class Diagram")
+
+Hopefully this class diagram gives you a better visual understanding of our models.
 
 ### Adding Products to the Marketplace
 To be able to query for products, we must first have products to query. This is how we're going to do that.
