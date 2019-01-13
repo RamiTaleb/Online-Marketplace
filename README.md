@@ -89,8 +89,12 @@ This is how GraphiQL should look like:
 ## The API
 I decided to use [GraphQL](https://graphql.org/) as I've never used it before and I thought it would be a great opportunity to get my feet wet with it. *The bonus points also don't hurt* 🤪
 
+Code for the API and the queries/mutations can be found if you navigate to `app/graphql`.
+
 ### The Models
 Before we get into using the API we should familiarize ourselves with the models that we'll be working with.
+
+Code for the models can be found if you navigate to `app/models`.
 
 #### Product
 The **Product** model is what we're going to be using to model our Products and it has the following attributes:
