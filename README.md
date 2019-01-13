@@ -1,10 +1,12 @@
 # 👨🏻‍💻 Rami's Shopify Backend Challenge 2019👨🏻‍💻
 
-Hopefully this doesn't suck and helps you understand how to get this running, doing all the things you want it to. I don't have this project hosted anywhere so I hope its not too much trouble to follow these steps to get the project up and running on your local machine.
-
-You can access the API here once you have the project running: http://localhost:3000/graphiql
+Hopefully this doesn't suck and helps you understand how to get this running, doing all the things you want it to. I don't have this project hosted anywhere so I hope its not too much trouble to follow these steps to get the project up and running on your machine locally.
 
 ## Table of Contents
+
+* [Tech Used](https://github.com/ramitaleb/shopify-backend-challenge-2019#tech-used)
+
+* [Getting Started](https://github.com/ramitaleb/shopify-backend-challenge-2019#getting-started)
 
 * [The API](https://github.com/ramitaleb/shopify-backend-challenge-2019#the-api)
   
@@ -43,8 +45,44 @@ You can access the API here once you have the project running: http://localhost:
   * [Remove a Product from Cart](https://github.com/ramitaleb/shopify-backend-challenge-2019#remove-a-product-from-cart)
   
   * [Checkout a Cart](https://github.com/ramitaleb/shopify-backend-challenge-2019#checkout-a-cart)
-      
   
+  
+## Tech Used
+I've recently picked up a keen interest in using Ruby on Rails for building web application so for that reason I chose to use Ruby on Rails to create this API. 
+
+I decided to use GraphQL because honestly it was in the bonus and I've been hearing about it a lot recently but never had the chance to use it so i decided I would use this opportunity to learn it and showcase my quick learning skills. I found it very easy to get used to and extremely efficient as I was no longer over/under querying and having to parse data afterwards. 
+  
+## Getting Started
+Before you go ahead and clone this repo, make sure you have **Ruby**, **Rails** and **SQLite** already installed on your machine or else nothing is going to work 😭.
+
+Once thats all taken care of, navigate to a clean directory and clone the repo!
+
+Now that's taken care of we can start getting this project running. Go ahead and navigate into the repo and run:
+
+`bundle`
+
+This will make sure all gem dependencies are installed.
+
+When thats done you're going to need to run these two commands to migrate and seed the database:
+
+```
+rake db:migrate
+rake db:seed
+```
+
+Now that everything is set, its time to pull the level and start the server:
+
+`rails server`
+
+If everything went as expected then you should be able to fire up a web browser and navigate to `http://localhost:3000/`
+
+If you see the following screen that means the everything is going well ad the server is running!
+![Rails](public/rails.png "Rails")
+
+At this point you should be able to access `http://localhost:3000/graphiql` to access the GraphiQL IDE. This IDE allows you not only allows you to run different queries on the database from the browser and see the results but also access documentation to do with the different queries and mutations you can perform on the database. More documentation on how to execute these queries and mutations can be found below in the API section of this doc.
+
+This is how GraphiQL should look like:
+![GraphiQL](public/graphiql.png "GraphiQL")
 
 ## The API
 I decided to use [GraphQL](https://graphql.org/) as I've never used it before and I thought it would be a great opportunity to get my feet wet with it. *The bonus points also don't hurt* 🤪
