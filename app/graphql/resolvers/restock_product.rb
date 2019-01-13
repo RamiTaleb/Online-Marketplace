@@ -3,7 +3,8 @@ class Resolvers::RestockProduct < GraphQL::Function
   argument :id, !types.ID
   argument :quantity, !types.Int
 
-  description 'Restock a product by a given quantity to make sure its available for purchase'
+  description 'Restock a product by a given quantity to make sure
+  its available for purchase'
 
   # return type from the mutation
   type Types::ProductType
@@ -16,8 +17,10 @@ class Resolvers::RestockProduct < GraphQL::Function
     # Here we are just finding the respective product and adding the value of quantity
     # to its inventory_count
     product = Product.find_by(id: args[:id])
-    product.inventory_count += args[:quantity]
-    product.save
-    Product.find_by(id: args[:id])
+    if product
+      product.inventory_count += args[:quantity]
+      product.save
+      Product.find_by(id: args[:id])
+    end
   end
 end

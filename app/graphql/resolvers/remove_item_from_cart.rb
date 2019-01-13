@@ -17,12 +17,18 @@ class Resolvers::RemoveItemFromCart < GraphQL::Function
     # subtract that from the total price of the cart,
     # then updating the cart total
     item = Item.find_by(id: args[:item_id])
-    price = item.price
+    if item
+      price = item.price
+      cart = Cart.find_by(id: args[:cart_id])
 
-    cart = Cart.find_by(id: args[:cart_id])
-    cart.order_total -= price
-    item.destroy
-    cart.save
-    Cart.find_by(id: args[:cart_id])
+      ## If the cart exists and the item is in the cart then subtract
+      # the item price from the cart
+      if cart && cart == item.cart
+        cart.order_total -= price
+        item.destroy
+        cart.save
+        Cart.find_by(id: args[:cart_id])
+      end
+    end
   end
 end

@@ -15,7 +15,7 @@ class Resolvers::CheckoutCart < GraphQL::Function
     cart = Cart.find_by(id: args[:cart_id])
     # If the cart has already been checked out then just return the cart
     # without performing any actions
-    if cart.order_status == 'In Progress'
+    if cart && cart.order_status == 'In Progress'
       # If we see that we tried to purchase an item that is out of stock
       # (inventory_count = 0) then we will only
       # Partially Complete the cart checkout

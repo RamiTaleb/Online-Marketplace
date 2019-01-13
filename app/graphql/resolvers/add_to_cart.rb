@@ -17,14 +17,16 @@ class Resolvers::AddToCart < GraphQL::Function
     # cart and product specified
     prod = Product.find_by(id: args[:product_id])
     cart = Cart.find_by(id: args[:cart_id])
-    Item.create!(
-      title: prod.title,
-      price: prod.price,
-      product: prod,
-      cart: cart
-    )
-    cart.order_total += prod.price
-    cart.save
-    Cart.find_by(id: args[:cart_id])
+    if prod && cart
+      Item.create!(
+        title: prod.title,
+        price: prod.price,
+        product: prod,
+        cart: cart
+      )
+      cart.order_total += prod.price
+      cart.save
+      Cart.find_by(id: args[:cart_id])
+    end
   end
 end
