@@ -2,6 +2,8 @@
 
 Hopefully this doesn't suck and helps you understand how to get this running, doing all the things you want it to. I don't have this project hosted anywhere so I hope its not too much trouble to follow these steps to get the project up and running on your machine locally.
 
+Below you can documentation on how to get the project up and running as well as how to use the API. Documentation for specific queries can be found on GraphQL IDE. I wrote comments as well throughout the code (mainly in the model and query/mutation/resolver files) to help explain parts of the code better and the decisions I made.
+
 ## Table of Contents
 
 * [Tech Used](https://github.com/ramitaleb/shopify-backend-challenge-2019#tech-used)
@@ -50,7 +52,7 @@ Hopefully this doesn't suck and helps you understand how to get this running, do
 ## Tech Used
 I've recently picked up a keen interest in using Ruby on Rails for building web application so for that reason I chose to use Ruby on Rails to create this API. 
 
-I decided to use GraphQL because honestly it was in the bonus and I've been hearing about it a lot recently but never had the chance to use it so i decided I would use this opportunity to learn it and showcase my quick learning skills. I found it very easy to get used to and extremely efficient as I was no longer over/under querying and having to parse data afterwards. 
+I decided to use GraphQL because honestly it was in the bonus and I've been hearing about it a lot recently but never had the chance to use it so i decided I would use this opportunity to learn it and showcase my quick learning skills. I found it very easy to get used to and extremely efficient as I was no longer over/under querying and having to parse data afterwards.
   
 ## Getting Started
 Before you go ahead and clone this repo, make sure you have **Ruby**, **Rails** and **SQLite** already installed on your machine or else nothing is going to work 😭.
@@ -74,9 +76,9 @@ Now that everything is set, its time to pull the level and start the server:
 
 `rails server`
 
-If everything went as expected then you should be able to fire up a web browser and navigate to `http://localhost:3000/`
+If everything went as expected then you should be able to fire up a web browser and navigate to ➡️ `http://localhost:3000/`
 
-If you see the following screen that means the everything is going well ad the server is running!
+If you see the following screen that means the everything is going well ad the server is running! ✅
 ![Rails](public/rails.png "Rails")
 
 At this point you should be able to access `http://localhost:3000/graphiql` to access the GraphiQL IDE. This IDE allows you not only allows you to run different queries on the database from the browser and see the results but also access documentation to do with the different queries and mutations you can perform on the database. More documentation on how to execute these queries and mutations can be found below in the API section of this doc.
@@ -88,7 +90,7 @@ This is how GraphiQL should look like:
 I decided to use [GraphQL](https://graphql.org/) as I've never used it before and I thought it would be a great opportunity to get my feet wet with it. *The bonus points also don't hurt* 🤪
 
 ### The Models
-Before we get into using the API we should familiarize ourselves with the model that we'll be working with.
+Before we get into using the API we should familiarize ourselves with the models that we'll be working with.
 
 #### Product
 The **Product** model is what we're going to be using to model our Products and it has the following attributes:
@@ -111,7 +113,7 @@ The **Item** model is what we are using to represent every physical entity of a 
 `cart`: Foreign key
 
 #### Cart
-The **Cart** model is what we are using to store multiple products that are ready to be purchased together. It has the following attributes:
+The **Cart** model 🛒 is what we are using to store multiple products that are ready to be purchased together. It has the following attributes:
 
 `order_total`: Float
 
@@ -155,10 +157,10 @@ Output:
   }
 }
 ```
-What this will do is it will create a sandwich, with the price of 5.00 and an inventory count of 80 then return to you the object its created.. You can change these values to whatever you'd like as long as they respect the type of the given attribute.
+What this will do is it will create a sandwich 🥪, with the price of 5.00 and an inventory count of 80 then return to you the object its created. You can change these values to whatever you'd like as long as they respect the type of the given attribute.
 
 ### Restocking a Product
-Eventually you may run out of inventory for a certain product and you'd like to restock it. Well, you're in luck because I have just the mutation for you. Check this out:
+Eventually you may run out of inventory for a certain product and you'd like to restock it. Well, you're in luck 🍀 because I have just the mutation for you. Check this out:
 
 ```
 Example:
@@ -193,12 +195,12 @@ Now that we have a product or multiple products in our database, we can start qu
 
 #### Querying for a Single Product
 ##### Querying by ID
-Here we are querying for a product by its unique ID. We are asking for it to return to us the id, title, price and inventory_count. 
+Here we are querying for a product by its unique ID. We are asking for it to return to us the `id`, `title`, `price` and `inventory_count`. 
 
 ```
 Example:
 {
-  product_by_id(id: 1) {
+  products(id: 1) {
     id
     title
     price
@@ -210,7 +212,7 @@ Example:
 Output:
 {
   "data": {
-    "product_by_id": {
+    "products": {
       "id": "1",
       "title": "sandwich",
       "price": 5.00,
@@ -227,7 +229,7 @@ Here we are querying for a product by its title.
 ```
 Example:
 {
-  product_by_title(title: "sandwich") {
+  products(title: "sandwich") {
 		id
     title
     price
@@ -239,7 +241,7 @@ Example:
 Output:
 {
   "data": {
-    "product_by_title": {
+    "products": {
       "id": "1",
       "title": "sandwich",
       "price": 5.00,
@@ -257,7 +259,7 @@ Here we are querying for all products.
 ```
 Example:
 {
-  all_products() {
+  products() {
     id
     title
     price
@@ -268,7 +270,7 @@ Example:
 OR
 ```
 {
-  all_products(only_available: false){
+  products(only_available: false){
     id
     title
     price
@@ -280,7 +282,7 @@ OR
 Output: 
 {
   "data": {
-    "all_products": [
+    "products": [
       {
         "id": "1",
         "title": "sandwich",
@@ -311,7 +313,7 @@ Available products are products with an `inventory_count > 0`. We must pass an a
 ```
 Example:
 {
-  all_products(only_available: true){
+  products(only_available: true){
     id
     title
     price
@@ -323,7 +325,7 @@ Example:
 Output:
 {
   "data": {
-    "all_products": [
+    "products": [
       {
         "id": "1",
         "title": "sandwich",
@@ -343,7 +345,7 @@ Output:
 As you can see here, we only were returned the products `sandwich` and `headphones`. Since the product `love` has an `inventory_count` of 0 it is not shown in this output. 💔
 
 ### Creating a Cart
-So, you've had time to browse the marketplace and its time to make some purchases. We're firstly going to need to create a cart. Here's how to do that:
+So, you've had time to browse the marketplace and its time to make some purchases. We're firstly going to need to create a cart 🛒. Here's how to do that:
 
 ```
 Example:
