@@ -9,10 +9,10 @@ class Product < ApplicationRecord
   validates :price,
             presence: true, numericality: { greater_than_or_equal_to: 0 }
 
-  # We want to ensure that the inventory count is greater than 0
+  # We want to ensure that the inventory count is not negative
   validates :inventory_count,
             presence: true, numericality: { only_integer: true,
-                                            greater_than: 0 }
+                                            greater_than_or_equal_to: 0 }
 
   has_many :items
 end
