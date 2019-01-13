@@ -20,9 +20,9 @@ Hopefully this doesn't suck and helps you understand how to get this running, do
     
     * [Class Diagram](https://github.com/ramitaleb/shopify-backend-challenge-2019#class-diagram)
   
-  * [Adding Products](https://github.com/ramitaleb/shopify-backend-challenge-2019#adding-products)
+  * [Adding a Product](https://github.com/ramitaleb/shopify-backend-challenge-2019#adding-a-product)
   
-  * [Restocking Products](https://github.com/ramitaleb/shopify-backend-challenge-2019#restocking-products)
+  * [Restocking a Product](https://github.com/ramitaleb/shopify-backend-challenge-2019#restocking-a-product)
   
   * [Querying for Products](https://github.com/ramitaleb/shopify-backend-challenge-2019#querying-for-products)
   
@@ -38,9 +38,9 @@ Hopefully this doesn't suck and helps you understand how to get this running, do
       
   * [Creating a Cart](https://github.com/ramitaleb/shopify-backend-challenge-2019#creating-a-cart)
   
-  * [Querying for a Cart](https://github.com/ramitaleb/shopify-backend-challenge-2019#querying-for-a-cart)
-  
   * [Adding a Product to Cart](https://github.com/ramitaleb/shopify-backend-challenge-2019#adding-a-product-to-cart)
+  
+  * [Querying for a Cart](https://github.com/ramitaleb/shopify-backend-challenge-2019#querying-for-a-cart)
   
   * [Remove a Product from Cart](https://github.com/ramitaleb/shopify-backend-challenge-2019#remove-a-product-from-cart)
   
@@ -123,7 +123,7 @@ The **Cart** model is what we are using to store multiple products that are read
 Hopefully this class diagram gives you a better visual understanding of our models.
 ![Class Diagram](public/class-diagram.png "Class Diagram")
 
-### Adding Products to the Marketplace
+### Adding a Product
 To be able to query for products, we must first have products to query. This is how we're going to do that.
 You're going to want to write a mutation that will be able to add whatever you specify to the database.
 
@@ -157,7 +157,7 @@ Output:
 ```
 What this will do is it will create a sandwich, with the price of 5.00 and an inventory count of 80 then return to you the object its created.. You can change these values to whatever you'd like as long as they respect the type of the given attribute.
 
-### Restocking Products on the Marketplace
+### Restocking a Product
 Eventually you may run out of inventory for a certain product and you'd like to restock it. Well, you're in luck because I have just the mutation for you. Check this out:
 
 ```
@@ -375,7 +375,7 @@ Output:
 ```
 So you can see we successfully were able to create a cart and it says that it is currently in progress, meaning it hasn't been checked out yet.
 
-### Add a Product to Cart
+### Adding a Product to Cart
 You found a sandwich 🥪 you think would taste amazing and would like to buy it. Let's add it to our cart! Make sure you specify the product ID of the product you want and the cart ID of the cart you'd like to add that product to. Just execute this mutation (or twice if you're really hungry 😆):
 
 ```
