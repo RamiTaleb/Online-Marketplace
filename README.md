@@ -20,7 +20,7 @@ Hopefully this doesn't suck and helps you understand how to get this running, do
     
     * [Class Diagram](https://github.com/ramitaleb/shopify-backend-challenge-2019#class-diagram)
   
-  * [Adding a Product](https://github.com/ramitaleb/shopify-backend-challenge-2019#adding-a-product)
+  * [Creating a Product](https://github.com/ramitaleb/shopify-backend-challenge-2019#creating-a-product)
   
   * [Restocking a Product](https://github.com/ramitaleb/shopify-backend-challenge-2019#restocking-a-product)
   
@@ -123,9 +123,9 @@ The **Cart** model is what we are using to store multiple products that are read
 Hopefully this class diagram gives you a better visual understanding of our models.
 ![Class Diagram](public/class-diagram.png "Class Diagram")
 
-### Adding a Product
+### Creating a Product
 To be able to query for products, we must first have products to query. This is how we're going to do that.
-You're going to want to write a mutation that will be able to add whatever you specify to the database.
+You're going to want to write a mutation that will be able to create whatever you specify to the database.
 
 ```
 Example:
