@@ -1,58 +1,58 @@
-# 👨🏻‍💻 Rami's Shopify Backend Challenge 2019👨🏻‍💻
-
-Hopefully this doesn't suck and helps you understand how to get this running, doing all the things you want it to. I don't have this project hosted anywhere so I hope its not too much trouble to follow these steps to get the project up and running on your machine locally.
+# 👨🏻‍💻 Rami's Online Marketplace 👨🏻‍💻
 
 Below you can documentation on how to get the project up and running as well as how to use the API. Documentation for specific queries can be found on GraphQL IDE. I wrote comments as well throughout the code (mainly in the model and query/mutation/resolver files) to help explain parts of the code better and the decisions I made.
 
 ## Table of Contents
 
-* [Tech Used](https://github.com/ramitaleb/shopify-backend-challenge-2019#tech-used)
+* [Tech Used](https://github.com/ramitaleb/Online-Marketplace#tech-used)
 
-* [Getting Started](https://github.com/ramitaleb/shopify-backend-challenge-2019#getting-started)
+* [Getting Started](https://github.com/ramitaleb/Online-Marketplace#getting-started)
 
-* [The API](https://github.com/ramitaleb/shopify-backend-challenge-2019#the-api)
+* [The API](https://github.com/ramitaleb/Online-Marketplace#the-api)
   
-  * [The Models](https://github.com/ramitaleb/shopify-backend-challenge-2019#the-models)
+  * [The Models](https://github.com/ramitaleb/Online-Marketplace#the-models)
   
-    * [Product](https://github.com/ramitaleb/shopify-backend-challenge-2019#product)
+    * [Product](https://github.com/ramitaleb/Online-Marketplace#product)
     
-    * [Item](https://github.com/ramitaleb/shopify-backend-challenge-2019#item)
+    * [Item](https://github.com/ramitaleb/Online-Marketplace#item)
     
-    * [Cart](https://github.com/ramitaleb/shopify-backend-challenge-2019#cart)
+    * [Cart](https://github.com/ramitaleb/Online-Marketplace#cart)
     
-    * [Class Diagram](https://github.com/ramitaleb/shopify-backend-challenge-2019#class-diagram)
+    * [Class Diagram](https://github.com/ramitaleb/Online-Marketplace#class-diagram)
   
-  * [Creating a Product](https://github.com/ramitaleb/shopify-backend-challenge-2019#creating-a-product)
+  * [Creating a Product](https://github.com/ramitaleb/Online-Marketplace#creating-a-product)
   
-  * [Restocking a Product](https://github.com/ramitaleb/shopify-backend-challenge-2019#restocking-a-product)
+  * [Restocking a Product](https://github.com/ramitaleb/Online-Marketplace#restocking-a-product)
   
-  * [Querying for Products](https://github.com/ramitaleb/shopify-backend-challenge-2019#querying-for-products)
+  * [Querying for Products](https://github.com/ramitaleb/Online-Marketplace#querying-for-products)
   
-    * [Querying for a Single Product](https://github.com/ramitaleb/shopify-backend-challenge-2019#querying-for-a-single-product)
-      * [Querying by ID](https://github.com/ramitaleb/shopify-backend-challenge-2019#querying-by-id)
+    * [Querying for a Single Product](https://github.com/ramitaleb/Online-Marketplace#querying-for-a-single-product)
+    
+      * [Querying by ID](https://github.com/ramitaleb/Online-Marketplace#querying-by-id)
       
-      * [Querying by Title](https://github.com/ramitaleb/shopify-backend-challenge-2019#querying-by-title)
+      * [Querying by Title](https://github.com/ramitaleb/Online-Marketplace#querying-by-title)
       
-    * [Querying for Multiple Products](https://github.com/ramitaleb/shopify-backend-challenge-2019#querying-for-multiple-products)
-      * [Querying for all Products](https://github.com/ramitaleb/shopify-backend-challenge-2019#querying-for-all-products)
+    * [Querying for Multiple Products](https://github.com/ramitaleb/Online-Marketplace#querying-for-multiple-products)
+    
+      * [Querying for all Products](https://github.com/ramitaleb/Online-Marketplace#querying-for-all-products)
       
-      * [Querying for all Available Products](https://github.com/ramitaleb/shopify-backend-challenge-2019#querying-for-all-available-products)
+      * [Querying for all Available Products](https://github.com/ramitaleb/Online-Marketplace#querying-for-all-available-products)
       
-  * [Creating a Cart](https://github.com/ramitaleb/shopify-backend-challenge-2019#creating-a-cart)
+  * [Creating a Cart](https://github.com/ramitaleb/Online-Marketplace#creating-a-cart)
   
-  * [Adding a Product to Cart](https://github.com/ramitaleb/shopify-backend-challenge-2019#adding-a-product-to-cart)
+  * [Adding a Product to Cart](https://github.com/ramitaleb/Online-Marketplace#adding-a-product-to-cart)
   
-  * [Querying for a Cart](https://github.com/ramitaleb/shopify-backend-challenge-2019#querying-for-a-cart)
+  * [Querying for a Cart](https://github.com/ramitaleb/Online-Marketplace#querying-for-a-cart)
   
-  * [Remove a Product from Cart](https://github.com/ramitaleb/shopify-backend-challenge-2019#remove-a-product-from-cart)
+  * [Remove a Product from Cart](https://github.com/ramitaleb/Online-Marketplace#remove-a-product-from-cart)
   
-  * [Checkout a Cart](https://github.com/ramitaleb/shopify-backend-challenge-2019#checkout-a-cart)
+  * [Checkout a Cart](https://github.com/ramitaleb/Online-Marketplace#checkout-a-cart)
   
   
 ## Tech Used
 I've recently picked up a keen interest in using Ruby on Rails for building web application so for that reason I chose to use Ruby on Rails to create this API. 
 
-I decided to use GraphQL because honestly it was in the bonus and I've been hearing about it a lot recently but never had the chance to use it so i decided I would use this opportunity to learn it and showcase my quick learning skills. I found it very easy to get used to and extremely efficient as I was no longer over/under querying and having to parse data afterwards.
+I decided to use GraphQL because honestly because I've been hearing about it a lot recently but never had the chance to use it so I decided I would use this opportunity to learn it and showcase my quick learning skills. I found it very easy to get used to and extremely efficient as I was no longer over/under querying and having to parse data afterwards.
   
 ## Getting Started
 Before you go ahead and clone this repo, make sure you have **Ruby**, **Rails** and **SQLite** already installed on your machine or else nothing is going to work 😭.
@@ -542,6 +542,6 @@ Output:
 }
 ```
 
-**NOTE**: After checking out a cart, the `inventory_count` of the products within the cart will be decremented by the number of times an item of that product was in the cart. If a product has an `inventory_count` of 0 or is in other words out of stock it will not decrement the `inventory_count`. You can check the inventory count of the products by [Querying for Products](https://github.com/ramitaleb/shopify-backend-challenge-2019#querying-for-products).
+**NOTE**: After checking out a cart, the `inventory_count` of the products within the cart will be decremented by the number of times an item of that product was in the cart. If a product has an `inventory_count` of 0 or is in other words out of stock it will not decrement the `inventory_count`. You can check the inventory count of the products by [Querying for Products](https://github.com/ramitaleb/Online-Marketplace#querying-for-products).
 
 **NOTE 2**: If a cart can be completely purchased successfully with no products that are out of stock you will see the `order_status` change to "Completed". If it can not be purchased successfully due to a product being out of stock then you will see the `order_status` change to "Partially Completed".
