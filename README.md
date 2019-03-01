@@ -55,6 +55,27 @@ I've recently picked up a keen interest in using Ruby on Rails for building web 
 I decided to use GraphQL because honestly because I've been hearing about it a lot recently but never had the chance to use it so I decided I would use this opportunity to learn it and showcase my quick learning skills. I found it very easy to get used to and extremely efficient as I was no longer over/under querying and having to parse data afterwards.
   
 ## Getting Started
+
+The application server can be run using Docker containerized infrastructure or on any machine with Ruby and SQLite installed.
+
+### Docker
+Before starting, make sure you have **Docker** already installed on your machine 🐳.
+
+Once you have Docker, navigate to a clean directory and clone the repo!
+
+Now that's taken care of, we can build the Docker image. Go ahead and navigate into the repo and run:
+
+`docker build --tag rami-online-marketplace .`
+
+This will build a Docker image with the application code, including all gem dependencies and a local SQLite database.
+
+⚠ Important: By default, the database exists in the container and the data does not persist when the container no longer exists. Volumes can be used to persist data, however the project is not configured to use a non-local database.
+
+Now that everything is set, its time to spin up a container and start the server:
+
+`docker run -p 3000:3000 rami-online-marketplace`
+
+### Bare metal/Virtual Machine
 Before you go ahead and clone this repo, make sure you have **Ruby**, **Rails** and **SQLite** already installed on your machine or else nothing is going to work 😭.
 
 Once thats all taken care of, navigate to a clean directory and clone the repo!
@@ -76,7 +97,11 @@ Now that everything is set, its time to pull the level and start the server:
 
 `rails server`
 
+### Accessing the application
+
 If everything went as expected then you should be able to fire up a web browser and navigate to ➡️ `http://localhost:3000/`
+
+> When using Docker Machine on Windows, use the IP address of the Docker machine (run `docker-machine ip`) instead of `localhost`.
 
 If you see the following screen that means the everything is going well ad the server is running! ✅
 ![Rails](public/rails.png "Rails")
